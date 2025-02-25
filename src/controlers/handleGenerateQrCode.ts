@@ -7,12 +7,19 @@ class handleGenerateQrCode{
   async execute(req:Request, res:Response){
 
    await axios.request(optionsAxiosConfig).then(qrCodeResponse => {
+
       handleSubmitQrcode(qrCodeResponse.data) //Send this qrCode to DynamoDB
+      console.log(qrCodeResponse)
       res.json(qrCodeResponse.data)
 
     }).catch(err => {
       res.status(400).send(err);
     })
   }
+
+  async decode(req:Request, res:Response){
+    
+  }
+
 }
 export{handleGenerateQrCode}

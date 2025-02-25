@@ -1,5 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
-import {dynamoDB, TABLE_NAME} from '../config/dynamodb';
+import {dynamoDB} from '../config/dynamodb';
 
 import {QrCodeProps} from '../utils/interfaceQPcode'
 
@@ -13,13 +13,14 @@ export default async function handleSubmitQrcode({id, allowsMultiplePayments, en
   payload
  }
  const params = {
-  TableName: TABLE_NAME,
+  TableName: 'QrcodeTransactions',
   Item: items,
 };
 
 try {
   console.log("saved")
-  return await dynamoDB.put(params).promise();
+  const createdTransaction =  await dynamoDB.put(params).promise();
+  console.log(createdTransaction)
 } catch (error) {
   throw new Error("Sorry, we could not save this information. ")
 }
