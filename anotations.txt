@@ -1,0 +1,8 @@
+Lembrar de gerar link do localhost.run e atualizar no webhook do asaas.
+
+
+Criar rota para cadastrar clientes
+	Cadastrar no Asaas primeiro e pegar o ID
+	Cadastrar na tabela de clientes do dynamo usando o ID vindo do asaas
+
+Quando gerar o qrcode enviar o cpf do cliente e verificar na base e pegar o id salvo do asaas

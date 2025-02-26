@@ -1,8 +1,11 @@
 export interface QrCodeProps{
   id: string,
-  encodedImage: string,
-  payload: string,
-  allowsMultiplePayments: boolean | any,
-  expirationDate: any,
-  externalReference: any
+  billingType:string,
+  customer:string,
+  dateCreated:string,
+  dueDate:string,
+  encodedImage:string,
+  payload:string,
+  status:string,
+  
 }
