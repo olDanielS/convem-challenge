@@ -20,5 +20,14 @@ export const optionsAxiosUsers = {
     access_token: process.env.ACCESS_TOKEN
   },
 };
+export const optionsAxiosWithdrawal = {
+  method: 'POST',
+  url: process.env.URL_WITHDRAWAL,
+  headers: {
+    accept: 'application/json',
+    'content-type': 'application/json',
+    access_token: process.env.ACCESS_TOKEN
+  },
+};
 
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { optionsAxiosConfig } from "../../services/axiosconfig";
 import handleSubmitQrcodesDB from "./handleSubmitQrcodesDB";
 
-class handleGenerateQrCode{
+class HandleGenerateQrCode{
   async execute(req:Request, res:Response){
   const {customer, value, dueDate} = req.body;
 
@@ -21,6 +21,7 @@ class handleGenerateQrCode{
       dueDate
     }
   }
+  console.log(payload)
 
    await axios.request(payload).then(transaction => {
     console.log("=-=-= CHARGE")
@@ -34,9 +35,5 @@ class handleGenerateQrCode{
     })
   }
 
-  async decode(req:Request, res:Response){
-    
-  }
-
 }
-export{handleGenerateQrCode}
+export{HandleGenerateQrCode}

@@ -9,3 +9,13 @@ export interface QrCodeProps{
   status:string,
   
 }
+export interface WithdrawalProps{
+  id:string,
+  object: string,
+  value: number,
+  dateCreated:string,
+  operationType:string,
+  scheduleDate:string,
+  status:string,
+  
+}

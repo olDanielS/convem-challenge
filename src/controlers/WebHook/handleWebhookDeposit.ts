@@ -9,9 +9,9 @@ const sqsClient = new SQSClient({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
-const queueUrl = process.env.URL_SQS;
+const queueUrl = process.env.URL_SQS_DEPOSIT;
 
-class handleWebhook {
+class handleWebhookDeposit {
   async execute(req: Request, res: Response) {
     res.status(200).send('Recebido');
 
@@ -33,4 +33,4 @@ class handleWebhook {
   }
 }
 
-export {handleWebhook}
+export {handleWebhookDeposit}

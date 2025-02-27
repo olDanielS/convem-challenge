@@ -11,7 +11,6 @@ Escolha uma tecnologia que não tenha tanta prática entre NodeJS c/ Typescript,
 
 Faça uma API para gerar o QR Code Pix 
 e salve as informações num banco de dados AWS DynamoDB.
--=-=-=- OK
 
 Faça uma API para receber a notificação webhook de cash in enviada pelo Asaas. Essa api deve simplesmente receber o webhook e enviar o payload para uma AWS SQS (fila), usando SDK da AWS.
 
