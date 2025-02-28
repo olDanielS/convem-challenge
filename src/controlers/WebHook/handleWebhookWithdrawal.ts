@@ -9,7 +9,7 @@ const sqsClient = new SQSClient({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
-const queueUrl = process.env.URL_SQS_WITHDRAWAL;
+const queueUrl = process.env.URL_SQS_TRANSFER;
 
 class handleWebhookWithdrawal {
   async execute(req: Request, res: Response) {
@@ -20,7 +20,7 @@ class handleWebhookWithdrawal {
       const command = new SendMessageCommand({
         QueueUrl: queueUrl,
         MessageBody: body,
-        MessageGroupId: "convemWebhook"
+        MessageGroupId: "convemWebhookTransfer"
       });
 
 

@@ -25,17 +25,17 @@ class HandleWithdrawal{
       console.log("Enviando solicitação para Asaas:", payload);
 
       // Chamar API do Asaas
-      const transaction = await axios.request(payload);
-
-      console.log("Cash out realizado com sucesso:", transaction.data);
-
-      // Enviar transação para o DynamoDB
-      await handleSendtoDB(transaction.data);
-
-      return res.json({
-        message: "Cash out solicitado com sucesso",
-        transaction: transaction.data,
+      const transaction = await axios.request(payload).then(async tranfer => {
+        await handleSendtoDB(tranfer.data);
+        return res.json({
+          message: "Cash out solicitado com sucesso",
+          transaction: tranfer.data,
+        });
+      }).catch(err => {
+        console.log("ERRO" + err)
+        return
       });
+      // Enviar transação para o DynamoDB
 
     } catch (error: any) {
       console.error("Erro na API do Asaas:", error.response?.data || error.message);

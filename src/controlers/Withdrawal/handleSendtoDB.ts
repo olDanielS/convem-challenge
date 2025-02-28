@@ -15,7 +15,7 @@ export default async function handleSendtoDB(data: any) {
   };
   
     await dynamoDB.put({
-          TableName: "WithdrawalTransaction",
+          TableName: "TransferTrasaction",
           Item: {
             ...payload
           },
