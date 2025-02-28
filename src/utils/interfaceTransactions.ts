@@ -1,4 +1,4 @@
-export interface QrCodeProps{
+export interface DepositProps{
   id: string,
   billingType:string,
   customer:string,
@@ -9,7 +9,7 @@ export interface QrCodeProps{
   status:string,
   
 }
-export interface WithdrawalProps{
+export interface TransferProps{
   id:string,
   object: string,
   value: number,

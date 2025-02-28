@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { HandleGenerateQrCode } from "./controlers/QrcodePayments/handleGenerateQrCode";
+import { HandleDepositController } from "./controlers/deposit/handleDepositController";
 import {handleCreateClient} from "./controlers/Users/handleCreateClient";
 
-import { HandleWithdrawal } from "./controlers/Withdrawal/handleWithdrawal";
+import { HandleTransferController } from "./controlers/transfer/handleTransferController";
 
-import { handleWebhookDeposit } from "./controlers/WebHook/handleWebhookDeposit";
-import { handleWebhookWithdrawal } from "./controlers/WebHook/handleWebhookWithdrawal";
+import { HandleWebhookDeposit } from "./services/WebHook/handleWebhookDeposit";
+import { HandleWebhookTransfer } from "./services/WebHook/handleWebhookTransfer";
 
 
 const router = Router();
@@ -13,13 +13,12 @@ const router = Router();
 router.post("/api/users", new handleCreateClient().execute)
 
 // =-=-=-- PAYMENTS
-router.post("/api/payment", new HandleGenerateQrCode().execute)
-router.post("/api/payment/withdrawal", new HandleWithdrawal().execute)
-
+router.post("/api/payment/deposit", new HandleDepositController().execute)
+router.post("/api/payment/transfer", new HandleTransferController().execute)
 
 // =-=-=-- Webhook
-router.post("/api/webhook/deposit", new handleWebhookDeposit().execute)
-router.post("/api/webhook/withdrawal", new handleWebhookWithdrawal().execute)
+router.post("/api/webhook/deposit", new HandleWebhookDeposit().execute)
+router.post("/api/webhook/transfer", new HandleWebhookTransfer().execute)
 
 router.get("/", (req, res) => {
    res.send("OK")

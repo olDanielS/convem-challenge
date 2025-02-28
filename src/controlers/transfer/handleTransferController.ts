@@ -3,7 +3,7 @@ import axios from "axios";
 import handleSendtoDB from "./handleSendtoDB";
 import { optionsAxiosWithdrawal } from "../../services/axiosconfig";
 
-class HandleWithdrawal{
+class HandleTransferController{
   async execute(req:Request,res:Response) {
     try {
       const { value, pixAddressKey } = req.body;
@@ -25,21 +25,21 @@ class HandleWithdrawal{
       console.log("Enviando solicitação para Asaas:", payload);
 
       // Chamar API do Asaas
-      const transaction = await axios.request(payload).then(async tranfer => {
+      await axios.request(payload).then(async tranfer => {
         await handleSendtoDB(tranfer.data);
         return res.json({
           message: "Cash out solicitado com sucesso",
           transaction: tranfer.data,
         });
       }).catch(err => {
-        console.log("ERRO" + err)
-        return
+        return res.status(err.response?.status || 500).json({
+          error: err.response?.data || "Erro interno do servidor",
+        });
       });
-      // Enviar transação para o DynamoDB
+
 
     } catch (error: any) {
       console.error("Erro na API do Asaas:", error.response?.data || error.message);
-
       return res.status(error.response?.status || 500).json({
         error: error.response?.data || "Erro interno do servidor",
       });
@@ -47,5 +47,5 @@ class HandleWithdrawal{
   }
 }
 
-export {HandleWithdrawal};
+export {HandleTransferController};
 

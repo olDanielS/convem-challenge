@@ -1,10 +1,10 @@
 import { dynamoDB } from '../../config/dynamodb';
-import { WithdrawalProps } from '../../utils/interfaceQPcode';
+import { TransferProps } from '../../utils/interfaceTransactions';
 
 export default async function handleSendtoDB(data: any) {
   try {
   
-  const payload: WithdrawalProps = {
+  const payload: TransferProps = {
     id: data.id,
     object:data.object,
     dateCreated: data.dateCreated,

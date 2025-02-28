@@ -1,8 +1,8 @@
 import { dynamoDB } from '../../config/dynamodb';
 import axios from 'axios';
-import { QrCodeProps } from '../../utils/interfaceQPcode';
+import { DepositProps } from '../../utils/interfaceTransactions';
 
-export default async function handleSubmitQrcodesDB(data: any) {
+export default async function handleSubmitDepositDB(data: any) {
   try {
     const chargeID = data.id;
 
@@ -21,12 +21,10 @@ export default async function handleSubmitQrcodesDB(data: any) {
       },
     };
 
-    
-    const response = await axios.request(collecBillingQrcode);
-  
+    const response = await axios.request(collecBillingQrcode);  
     const {payload, encodedImage} = response.data;
   
-    const newData: QrCodeProps = {
+    const newData: DepositProps = {
       id: chargeID,
       customer: data.custumer, 
       billingType: data.billingType,
@@ -35,12 +33,10 @@ export default async function handleSubmitQrcodesDB(data: any) {
       encodedImage,
       payload, 
       status:data.status,
-      
     }
 
     const payloadData = {
       ...newData, 
-      
     };
     const params = {
       TableName: 'QrcodeTransactions',
@@ -52,6 +48,6 @@ export default async function handleSubmitQrcodesDB(data: any) {
 
   } catch (error) {
     console.error("Erro ao salvar os dados:", error);
-    throw new Error("Sorry, we could not save this information.");
+    throw new Error("Desculpe, não conseguimos processar sua solicitação.");
   }
 }

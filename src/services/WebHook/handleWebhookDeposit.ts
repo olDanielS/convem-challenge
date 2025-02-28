@@ -2,16 +2,16 @@ import { Request, Response } from 'express';
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 
 
-const sqsClient = new SQSClient({
-  region: process.env.AWS_REGION, 
+const sqsClient:SQSClient = new SQSClient({
+  region: process.env.AWS_REGION as string, 
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
   },
 });
 const queueUrl = process.env.URL_SQS_DEPOSIT;
 
-class handleWebhookDeposit {
+class HandleWebhookDeposit {
   async execute(req: Request, res: Response) {
     res.status(200).send('Recebido');
 
@@ -23,7 +23,6 @@ class handleWebhookDeposit {
         MessageGroupId: "convemWebhook"
       });
 
-
       await sqsClient.send(command).then(res => {
         console.log('Webhook enviado para a fila SQS:', res);
       });
@@ -33,4 +32,4 @@ class handleWebhookDeposit {
   }
 }
 
-export {handleWebhookDeposit}
+export {HandleWebhookDeposit}
