@@ -7,6 +7,7 @@ export default async function handleSendtoDB(data: any) {
   const payload: TransferProps = {
     id: data.id,
     object:data.object,
+    customer:data.customer,
     dateCreated: data.dateCreated,
     operationType: data.operationType,
     scheduleDate: data.scheduleDate,

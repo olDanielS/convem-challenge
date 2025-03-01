@@ -26,8 +26,10 @@ export default async function handleSubmitDepositDB(data: any) {
   
     const newData: DepositProps = {
       id: chargeID,
-      customer: data.custumer, 
+      object: data.object,
+      customer: data.customer, 
       billingType: data.billingType,
+      value:data.value,
       dateCreated: data.dateCreated,
       dueDate: data.dueDate,
       encodedImage,
