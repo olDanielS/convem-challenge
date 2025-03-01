@@ -22,20 +22,17 @@ class HandleTransferController{
         },
       };
 
-      console.log("Enviando solicitação para Asaas:", payload);
+      console.log("Enviando solicitação para Asaas:");
 
-      // Chamar API do Asaas
-      await axios.request(payload).then(async tranfer => {
-        await handleSendtoDB(tranfer.data);
-        return res.json({
-          message: "Cash out solicitado com sucesso",
-          transaction: tranfer.data,
+      await axios.request(payload).then(async (transaction) => { 
+        console.log("=-=-= PROCESSANDO SAQUE");
+        await handleSendtoDB(transaction.data);  
+        return res.json(transaction.data);  
+      })
+        .catch(err => {
+          console.error("Erro na transação:", err.response?.data || err.message);
+          return res.status(400).json({ error: err.response?.data || "Erro ao processar a requisição" });
         });
-      }).catch(err => {
-        return res.status(err.response?.status || 500).json({
-          error: err.response?.data || "Erro interno do servidor",
-        });
-      });
 
 
     } catch (error: any) {

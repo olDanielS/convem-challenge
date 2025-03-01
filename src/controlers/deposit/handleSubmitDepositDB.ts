@@ -32,11 +32,12 @@ export default async function handleSubmitDepositDB(data: any) {
       value:data.value,
       dateCreated: data.dateCreated,
       dueDate: data.dueDate,
-      encodedImage,
+      encodedImage: encodedImage,
       payload, 
       status:data.status,
     }
-
+    // encodedImage,
+    
     const payloadData = {
       ...newData, 
     };
@@ -50,6 +51,6 @@ export default async function handleSubmitDepositDB(data: any) {
 
   } catch (error) {
     console.error("Erro ao salvar os dados:", error);
-    throw new Error("Desculpe, não conseguimos processar sua solicitação.");
+    throw new Error("Não conseguimos processar sua solicitação.");
   }
 }

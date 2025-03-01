@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 
-
 const sqsClient:SQSClient = new SQSClient({
   region: process.env.AWS_REGION as string, 
   credentials: {
@@ -24,10 +23,10 @@ class HandleWebhookDeposit {
       });
 
       await sqsClient.send(command).then(res => {
-        console.log('Webhook enviado para a fila SQS:', res);
+        console.log('Webhook enviado para a fila SQS:');
       });
     } catch (error) {
-      console.error('Erro ao enviar webhook para SQS:', error);
+      console.error('Erro ao enviar webhook para SQS:');
     }
   }
 }
